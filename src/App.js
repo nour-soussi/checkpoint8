@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import {useState} from 'react'
+import {movies} from './data'
+import MovieList from "./Component/MovieList"
+import CustomNavbar from "./Component/CustomNavbar"
+import AddMovie from "./Component/AddMovie"
 
 function App() {
+  const [films,setFilms]=useState(movies);
+  const [caractere,setCaractere]=useState(' ');
+  const [rate,setRate]=useState(0);
+  const addFilm=(film)=>{
+    setFilms([...films,film])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CustomNavbar setCaractere={setCaractere} setRate={setRate}/>
+      <AddMovie addFilm={addFilm}/>
+      <MovieList films={films} caractere={caractere} rate={rate} />
     </div>
   );
 }
