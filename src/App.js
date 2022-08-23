@@ -1,25 +1,32 @@
-import './App.css'
-import {useState} from 'react'
-import {movies} from './data'
-import MovieList from "./Component/MovieList"
-import CustomNavbar from "./Component/CustomNavbar"
-import AddMovie from "./Component/AddMovie"
+import { useState } from 'react';
+import './App.css';
+import{ movies } from'./Data'; 
+import List from './Component/List';
+import CustomNavbar from './Component/CustomNavbar';
+import ReactDOM from "react-dom/client";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Details from './Component/Details'
 
 function App() {
-  const [films,setFilms]=useState(movies);
-  const [caractere,setCaractere]=useState(' ');
-  const [rate,setRate]=useState(0);
-  const addFilm=(film)=>{
-    setFilms([...films,film])
-  }
-
+  const[Films,setFilms]=useState(movies);
+  const[Caracter,setCaracter]=useState('');
+  const[Rate,setRate]=useState(0);
   return (
     <div>
-      <CustomNavbar setCaractere={setCaractere} setRate={setRate}/>
-      <AddMovie addFilm={addFilm}/>
-      <MovieList films={films} caractere={caractere} rate={rate} />
+      <CustomNavbar setCaracter={setCaracter} setRate={setRate}/>
+      <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<List Films={Films} Caracter={Caracter} Rate={Rate}/>}> </Route>
+      <Route path="/Details/:id" element={<Details Films={Films}/>}> </Route>
+    </Routes>
+  </BrowserRouter>
     </div>
-  );
+    );
 }
+
 
 export default App;

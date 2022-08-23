@@ -3,19 +3,18 @@ import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
 import ReactStars from "react-rating-stars-component";
 
-function CustomNavbar({setCaractere,setRate}) {
-
-const handleChange = (e) =>{
-    setCaractere(e.target.value);
-}
-
-const handleRate = (change) =>{
-    setRate(change);
-}
+function CustomNavbar({setCaracter,setRate}) {
+    
+    const handleChange = (e)=> {
+        setCaracter(e.target.value);
+        }
+        const handleRate=(e)=>{
+            setRate(e);
+        }
     return (
-        <div>
         <Navbar bg="light" expand="lg">
         <Container fluid>
+            <Navbar.Collapse id="navbarScroll">
             <Form className="d-flex">
                 <Form.Control
                 type="search"
@@ -25,18 +24,17 @@ const handleRate = (change) =>{
                 onChange={handleChange}
                 />
             </Form>
+            </Navbar.Collapse>
             <ReactStars
-                count={5}
-                size={24}
-                activeColor="#ffd700"
-                edit={true}
-                onChange={handleRate}
-                value={0}
-                />
-
+            onChange={handleRate}
+            edit={true}
+        count={5}
+        size={24}
+        activeColor="#ffd700"
+    />
+            
         </Container>
         </Navbar>
-        </div>
     );
 }
 
